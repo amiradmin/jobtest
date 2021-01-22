@@ -17,4 +17,4 @@ class Queues(models.Model):
     max_patient = models.IntegerField( null=True, blank=True  )
     date = models.DateField(null=True, blank=True)
     def __str__(self):
-        return self.clinic_name
+        return self.clinic_name.name
