@@ -3,12 +3,93 @@ from rest_framework.views import APIView
 from rest_framework import viewsets
 from django.core import serializers
 from rest_framework.response import Response
-from .models import Profile
+from .models import Profile,ClinicProfile
 from .serializers import ProfileSerializer
 from django.contrib.auth.models import User
+from accounts.forms import InsertUser,InsertClinicUser
+from django.views.generic import TemplateView
 # Create your views here.
 
+class NewUser(TemplateView):
+    template_name = "accounts/user_signup.html"
 
+    def get_context_data(self):
+
+        context = super(NewUser, self).get_context_data()
+        form = InsertUser()
+        context['form'] = form
+        return context
+
+    def post(self, request, *args, **kwargs):
+        print('Post')
+        form = InsertUser(self.request.POST,self.request.FILES)
+        # clinic_list =Clinics.objects.all()
+        user_obj = Profile()
+        username = request.POST['username']
+        password = request.POST['password']
+        email = request.POST['email']
+        phone = request.POST['phone']
+        cell_phone = request.POST['cell_phone']
+        birth_date = request.POST['birth_date']
+        avatar = request.FILES['avatar']
+
+        user = User()
+        user.username = username
+        user.set_password (password)
+        user.email = email
+        user.save()
+        user.refresh_from_db()
+        user.profile.phone = phone
+        user.profile.cell_phone = cell_phone
+        user.profile.birth_date = birth_date
+        user.profile.avatar = avatar
+        user.is_active = True
+        user.is_superuser = True
+        user.is_staff = True
+        user.profile.save()
+
+        return render(request,'index.html',{})
+
+
+class NewClinicUser(TemplateView):
+    template_name = "accounts/clinic_signup.html"
+
+    def get_context_data(self):
+
+        context = super(NewClinicUser, self).get_context_data()
+        form = InsertClinicUser()
+        context['form'] = form
+        return context
+
+    def post(self, request, *args, **kwargs):
+        print('Post')
+        form = InsertClinicUser(self.request.POST,self.request.FILES)
+        # clinic_list =Clinics.objects.all()
+        user_obj = ClinicProfile()
+        username = request.POST['username']
+        password = request.POST['password']
+        email = request.POST['email']
+        phone = request.POST['phone']
+        name = request.POST['name']
+        birth_date = request.POST['birth_date']
+        # avatar = request.FILES['avatar']
+        #
+        user = User()
+        user.username = username
+        user.set_password (password)
+        user.email = email
+        user.save()
+        user.refresh_from_db()
+        user.clinicprofile.phone = phone
+        user.clinicprofile.name = name
+        user.clinicprofile.birth_date = birth_date
+        # user.clinicprofile.avatar = avatar
+        user.is_active = True
+        user.is_superuser = True
+        user.is_staff = True
+        user.clinicprofile.save()
+
+        return render(request,'index.html',{})
 
 class UserProfile(viewsets.ModelViewSet):
 
