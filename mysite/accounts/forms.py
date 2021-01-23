@@ -19,5 +19,6 @@ class InsertClinicUser(forms.Form):
     name = forms.CharField(max_length=30)
     address = forms.CharField(max_length=30)
     phone = forms.CharField(max_length=30 )
+    field = forms.CharField(max_length=30 )
     birth_date = forms.DateField()
     avatar = forms.ImageField()

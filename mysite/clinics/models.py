@@ -7,6 +7,7 @@ class Clinics(models.Model):
     name = models.CharField(max_length=30,  null=True, blank=True  )
     address = models.CharField(max_length=30,  null=True, blank=True  )
     phone = models.CharField(max_length=30,  null=True, blank=True  )
+    field = models.CharField(max_length=30,  null=True, blank=True  )
     image = models.ImageField(upload_to = 'clinics_images/',null=True, blank=True)
     def __str__(self):
         return self.name

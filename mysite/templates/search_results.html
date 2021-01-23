@@ -40,13 +40,12 @@
 
                              <div class="books-div">
                                  <div class="row">
-                                   {% for item in clinic_list %}
+                                   {% for item in search_list %}
                                      <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12">
                                        <a href="">
                                          <div class="book-content">
                                              <img src="{% if item.image %}{{ item.image.url }} {% endif %}">
                                              <p>{{ item.name }}</p>
-                                             <p>{{ item.field }}</p>
                                              <a class="tag" href="">{{ item.phone }}</a>
                                          </div>
                                          </a>

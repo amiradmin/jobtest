@@ -8,13 +8,18 @@ from .serializers import ProfileSerializer
 from django.contrib.auth.models import User
 from accounts.forms import InsertUser,InsertClinicUser
 from django.views.generic import TemplateView
+
 # Create your views here.
+
+
+
+
+
 
 class NewUser(TemplateView):
     template_name = "accounts/user_signup.html"
 
     def get_context_data(self):
-
         context = super(NewUser, self).get_context_data()
         form = InsertUser()
         context['form'] = form
@@ -24,14 +29,14 @@ class NewUser(TemplateView):
         print('Post')
         form = InsertUser(self.request.POST,self.request.FILES)
         # clinic_list =Clinics.objects.all()
-        user_obj = Profile()
+        # user_obj = Profile()
         username = request.POST['username']
         password = request.POST['password']
         email = request.POST['email']
         phone = request.POST['phone']
         cell_phone = request.POST['cell_phone']
         birth_date = request.POST['birth_date']
-        avatar = request.FILES['avatar']
+        # avatar = request.FILES['avatar']
 
         user = User()
         user.username = username
@@ -42,7 +47,7 @@ class NewUser(TemplateView):
         user.profile.phone = phone
         user.profile.cell_phone = cell_phone
         user.profile.birth_date = birth_date
-        user.profile.avatar = avatar
+        # user.profile.avatar = avatar
         user.is_active = True
         user.is_superuser = True
         user.is_staff = True
@@ -65,7 +70,7 @@ class NewClinicUser(TemplateView):
         print('Post')
         form = InsertClinicUser(self.request.POST,self.request.FILES)
         # clinic_list =Clinics.objects.all()
-        user_obj = ClinicProfile()
+        # user_obj = ClinicProfile()
         username = request.POST['username']
         password = request.POST['password']
         email = request.POST['email']
