@@ -31,7 +31,8 @@
                             <section id="books-section">
 
                              <div class="books-div">
-                               <form method="post" novalidate enctype="multipart/form-data">
+
+                               <form method="post" >
                                  {% csrf_token %}
                                    <table border="1">
                                  {{ form }}

@@ -24,6 +24,7 @@ urlpatterns = [
     path('accounts/', include('accounts.urls', 'accounts')),
     path('products/', include('products.urls', 'products')),
     path('clinics/', include('clinics.urls', 'clinics')),
+    path('booking/', include('booking.urls', 'booking')),
     path('', include('home.urls', 'home')),
     path('auth/', include('rest_framework.urls')),
     path('api/token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),

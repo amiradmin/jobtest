@@ -6,7 +6,7 @@ app_name ="home"
 urlpatterns = [
 
     path('',IndexView.as_view(), name='index'),
-
+    path('accounts/', include('django.contrib.auth.urls')),
 
 
 

@@ -96,8 +96,19 @@
 &nbsp;
             <div class="">
               <br>
-               <i  class=""><a href="{% url 'accounts:newuser' %}">User Signup</a></i>&nbsp;&nbsp;
-                <i  class=""><a href="{% url 'accounts:newclinicuser' %}">Clinic Signup</a></i>
+              {% if user.is_authenticated %}
+  &nbsp;&nbsp; Hi {{ user.username }}! &nbsp;&nbsp;
+
+  <p><a href="{% url 'home:logout' %}">Log Out</a></p>
+
+{% else %}
+  <p>You are not logged in</p>
+  <a href="{% url 'home:login' %}">Log In</a>
+  <i  class=""><a href="{% url 'accounts:newuser' %}">User Signup</a></i>&nbsp;&nbsp;
+   <i  class=""><a href="{% url 'accounts:newclinicuser' %}">Clinic Signup</a></i>&nbsp;&nbsp;
+{% endif %}
+
+
 
             </div>
 

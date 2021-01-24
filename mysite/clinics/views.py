@@ -2,12 +2,14 @@ from django.shortcuts import render,get_object_or_404
 from clinics.models import Clinics
 from django.views.generic import TemplateView
 from clinics.forms import InsertClinic
+from booking.models import Queues
+from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
 
 
 
-class ClinicDetails(TemplateView):
+class ClinicDetails(LoginRequiredMixin,TemplateView):
 
     template_name='clinics/clinic_details.html'
 
@@ -15,7 +17,10 @@ class ClinicDetails(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         single_clinics = self.get_object()
+        patent_in_queue =Queues.objects.filter(user = self.request.user).count()
+        context['patent_in_queue'] = patent_in_queue
         context['single_clinics'] = single_clinics
+
         return context
 
     def get_object(self):
