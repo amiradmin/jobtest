@@ -28,6 +28,17 @@ class Userprofiler(TemplateView):
         return context
 
 
+class ClinicProfiler(TemplateView):
+    template_name = "accounts/clinic_profile.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # .filter(user = self.request.user)
+        booking_list =Queues.objects.select_related('clinic').filter(user =self.request.user )
+        # booking_list = booking_list.objects.filter(user_id = 13)
+        context['booking_list'] = booking_list
+
+        return context
 
 
 class NewUser(TemplateView):
@@ -131,7 +142,7 @@ class UserProfile(viewsets.ModelViewSet):
         avatar = request.data['avatar']
 
         user = User()
-        
+
         user.username = username
         user.set_password (password)
         user.email = email

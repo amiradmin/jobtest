@@ -17,8 +17,11 @@ class ClinicDetails(LoginRequiredMixin,TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         single_clinics = self.get_object()
-        patent_in_queue =Queues.objects.filter(user = self.request.user).count()
+        # patent_in_queue =Queues.objects.filter(user = self.request.user).count()
+        patent_in_queue =Queues.objects.select_related('clinic').filter(user =self.request.user ).filter(clinic=single_clinics ).count()
+        last_in_queue =Queues.objects.filter(user = self.request.user).last()
         context['patent_in_queue'] = patent_in_queue
+        context['last_in_queue'] = last_in_queue
         context['single_clinics'] = single_clinics
 
         return context

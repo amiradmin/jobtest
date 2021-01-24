@@ -1,6 +1,6 @@
 from rest_framework import routers
 from django.contrib import admin
-from .views import UserProfile,NewUser,NewClinicUser,Userprofiler
+from .views import UserProfile,NewUser,NewClinicUser,Userprofiler,ClinicProfiler
 from . import views
 from django.urls import include, path
 app_name ="accounts"
@@ -15,4 +15,5 @@ urlpatterns = [
     path('newuser/',NewUser.as_view(), name='newuser'),
     path('newclinicuser/',NewClinicUser.as_view(), name='newclinicuser'),
     path('userprofile/',Userprofiler.as_view(), name='userprofile'),
+    path('clinicprofile/',ClinicProfiler.as_view(), name='clinicprofile'),
 ]

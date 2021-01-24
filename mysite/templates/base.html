@@ -101,7 +101,8 @@
 
   <p><a href="{% url 'home:logout' %}">Log Out</a></p> &nbsp;&nbsp;
   <p><a href="{% url 'home:index' %}">Home</a></p>&nbsp;&nbsp;
-  <p><a href="{% url 'accounts:userprofile' %}">Profile</a></p>&nbsp;&nbsp;
+  <p><a href="{% url 'accounts:userprofile' %}">User Profile</a></p>&nbsp;&nbsp;
+  <p><a href="{% url 'accounts:clinicprofile' %}">Clinic Profile</a></p>&nbsp;&nbsp;
 
 {% else %}
   <p>You are not logged in</p>

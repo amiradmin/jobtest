@@ -41,6 +41,7 @@
                                              <a class="tag" href="">{{ single_clinics.phone }}</a><br>
                                              <a class="tag" href="">Booked : {{ patent_in_queue }}</a>/
                                              <a class="tag" href="">Available : {{ single_clinics.max_patient }} </a>
+                                             <a class="tag" href="">Last Turn : {{ last_in_queue.date }} </a>
                                              <br>
                                              <a class="tag" href=" {% if single_clinics.image %} {% url 'booking:newbooking_'  id=single_clinics.id  %} {% endif %} ">Book</a>
                                          </div>
