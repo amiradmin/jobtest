@@ -8,10 +8,24 @@ from .serializers import ProfileSerializer
 from django.contrib.auth.models import User
 from accounts.forms import InsertUser,InsertClinicUser
 from django.views.generic import TemplateView
+from booking.models import Queues
+from clinics.models import Clinics
 
 # Create your views here.
 
 
+
+class Userprofiler(TemplateView):
+    template_name = "accounts/user_profile.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # .filter(user = self.request.user)
+        booking_list =Queues.objects.select_related('clinic').filter(user =self.request.user )
+        # booking_list = booking_list.objects.filter(user_id = 13)
+        context['booking_list'] = booking_list
+
+        return context
 
 
 
@@ -111,24 +125,18 @@ class UserProfile(viewsets.ModelViewSet):
         username = request.data['username']
         password = request.data['password']
         email = request.data['email']
-        university = request.data['university']
-        city = request.data['city']
-        country = request.data['country']
         phone = request.data['phone']
         cell_phone = request.data['cell_phone']
         birth_date = request.data['birth_date']
         avatar = request.data['avatar']
 
         user = User()
-
+        
         user.username = username
         user.set_password (password)
         user.email = email
         user.save()
         user.refresh_from_db()
-        user.profile.university = university
-        user.profile.city = city
-        user.profile.country = country
         user.profile.phone = phone
         user.profile.cell_phone = cell_phone
         user.profile.birth_date = birth_date

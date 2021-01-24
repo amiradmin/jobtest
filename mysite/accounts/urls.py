@@ -1,6 +1,6 @@
 from rest_framework import routers
 from django.contrib import admin
-from .views import UserProfile,NewUser,NewClinicUser
+from .views import UserProfile,NewUser,NewClinicUser,Userprofiler
 from . import views
 from django.urls import include, path
 app_name ="accounts"
@@ -14,4 +14,5 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('newuser/',NewUser.as_view(), name='newuser'),
     path('newclinicuser/',NewClinicUser.as_view(), name='newclinicuser'),
+    path('userprofile/',Userprofiler.as_view(), name='userprofile'),
 ]
