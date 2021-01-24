@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'products',
     'home',
     'clinics',
+    'booking',
 ]
 
 MIDDLEWARE = [

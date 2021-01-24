@@ -42,7 +42,7 @@
                                  <div class="row">
                                    {% for item in clinic_list %}
                                      <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12">
-                                       <a href="">
+                                       <a href="{% url 'clinics:clinic_details' id=item.id %}">
                                          <div class="book-content">
                                              <img src="{% if item.image %}{{ item.image.url }} {% endif %}">
                                              <p>{{ item.name }}</p>

@@ -15,15 +15,7 @@
                             <nav id="side-nav" class="rtl">
                                 <ul>
 
-                                  <div class="">
-                                    <form method="post" >
-                                      {% csrf_token %}
-                                        <table border="3">
-                                      {{ form }}
-                                      </table>
-                                      <button type="submit">Submit</button>
-                                    </form>
-                                  </div>
+
 
 
 
@@ -40,17 +32,19 @@
 
                              <div class="books-div">
                                  <div class="row">
-                                   {% for item in search_list %}
+
                                      <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12">
-                                       <a href="{% url 'clinics:clinic_details' id=item.id %}">
+                                       <a href="">
                                          <div class="book-content">
-                                             <img src="{% if item.image %}{{ item.image.url }} {% endif %}">
-                                             <p>{{ item.name }}</p>
-                                             <a class="tag" href="">{{ item.phone }}</a>
+                                             <img src="{% if single_clinics.image %}{{ single_clinics.image.url }} {% endif %}">
+                                             <p>{{ single_clinics.name }}</p>
+                                             <a class="tag" href="">{{ single_clinics.phone }}</a><br>
+                                             <a class="tag" href="">{{ single_clinics.max_patient }}</a>
+                                             <br>
+                                             <a class="tag" href="">Book</a>
                                          </div>
                                          </a>
                                      </div>
-                                    {% endfor %}
 
 
                                  </div>

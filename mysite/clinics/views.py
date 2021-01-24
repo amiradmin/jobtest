@@ -6,6 +6,22 @@ from clinics.forms import InsertClinic
 
 
 
+
+class ClinicDetails(TemplateView):
+
+    template_name='clinics/clinic_details.html'
+
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        single_clinics = self.get_object()
+        context['single_clinics'] = single_clinics
+        return context
+
+    def get_object(self):
+         return get_object_or_404(Clinics, pk=self.kwargs.get("id"))
+
+
 class ClinicsView(TemplateView):
     template_name = "index.html"
 
