@@ -33,12 +33,13 @@
                              <div class="books-div">
                                  <div class="row">
 
-
+5555
                                    <table style="width:100%">
-                                        {% for item in booking_list %}
+                                        {% for item in clinic_queue %}
                                      <tr>
                                        <th><img src="{% if item.image %}{{ item.image.url }} {% endif %}"></th>
                                        <th>{{ item.date }}</th>
+                                       <th>{{ item.user }}</th>
                                        <th>{{ item.clinic }}</th>
                                        <th>{{ item.clinic.phone }}</th>
                                      </tr>

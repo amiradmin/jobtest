@@ -33,10 +33,10 @@ class ClinicProfiler(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # .filter(user = self.request.user)
-        booking_list =Queues.objects.select_related('clinic').filter(user =self.request.user )
+        selected_clinic = Clinics.objects.get(pk = 4)
+        clinic_queue =Queues.objects.select_related('clinic').filter(clinic =selected_clinic)
         # booking_list = booking_list.objects.filter(user_id = 13)
-        context['booking_list'] = booking_list
+        context['clinic_queue'] = clinic_queue
 
         return context
 
